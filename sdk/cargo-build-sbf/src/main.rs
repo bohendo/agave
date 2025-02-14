@@ -5,8 +5,8 @@ use {
     itertools::Itertools,
     log::*,
     regex::Regex,
-    solana_file_download::download_file,
-    solana_keypair::{write_keypair_file, Keypair},
+    solana_download_utils::download_file,
+    solana_sdk::signature::{write_keypair_file, Keypair},
     std::{
         borrow::Cow,
         collections::{HashMap, HashSet},
@@ -21,7 +21,7 @@ use {
     tar::Archive,
 };
 
-const DEFAULT_PLATFORM_TOOLS_VERSION: &str = "v1.43";
+const DEFAULT_PLATFORM_TOOLS_VERSION: &str = "v1.39";
 
 #[derive(Debug)]
 struct Config<'a> {

@@ -5230,6 +5230,7 @@ dependencies = [
  "bzip2",
  "cargo_metadata",
  "clap 3.2.23",
+ "itertools",
  "log",
  "predicates",
  "regex",
