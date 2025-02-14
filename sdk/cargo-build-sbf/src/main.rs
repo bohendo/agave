@@ -771,6 +771,9 @@ fn build_solana_package(
     };
 
     cargo_build_args.append(&mut vec!["build", "--release", "--target", target]);
+    if config.offline {
+        cargo_build_args.push("--frozen");
+    }
     if config.arch == "sbfv2" {
         cargo_build_args.push("-Zbuild-std=std,panic_abort");
     }
@@ -936,7 +939,7 @@ fn build_solana(config: Config, manifest_path: Option<PathBuf>) {
         metadata_command.manifest_path(manifest_path);
     }
     if config.offline {
-        metadata_command.other_options(vec!["--offline".to_string()]);
+        metadata_command.other_options(vec!["--offline".to_string(), "--frozen".to_string()]);
     }
 
     let metadata = metadata_command.exec().unwrap_or_else(|err| {
